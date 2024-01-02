@@ -1,0 +1,27 @@
+
+### Cypress Custom .gitignore ###
+*.log.*
+dist-*
+build
+.history
+.publish
+_test-output
+cypress.zip
+.babel-cache
+
+### Node ###
+# Logs
+logs
+*.log
+npm-debug.log*
+
+# Dependency directories
+node_modules/
+jspm_packages/
+
+# Optional npm cache directory
+.npm
+
+# Temporary folders
+tmp/
+temp/
