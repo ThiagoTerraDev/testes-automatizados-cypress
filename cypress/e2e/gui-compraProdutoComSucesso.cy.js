@@ -3,10 +3,7 @@
 
 describe('Teste E2E - Realizando a compra de produtos com sucesso', () => {
     it('Fluxo da compra de produtos', () => {
-        cy.visit("https://www.saucedemo.com")
-        cy.get('[data-test="username"]').type("standard_user")
-        cy.get('[data-test="password"]').type("secret_sauce")
-        cy.get('#login-button').click()
+        cy.loginTeste('standard_user', 'secret_sauce')
         cy.get('.title').should('contain', 'Products')
 
         // Ordenação de produtos de menor para maior valor:
@@ -35,9 +32,7 @@ describe('Teste E2E - Realizando a compra de produtos com sucesso', () => {
 
         // Check no carrinho:
         cy.get('.shopping_cart_link').click()
-        cy.get('.cart_list > :nth-child(3)').should('contain', 'Sauce Labs Onesie')
-        cy.get('.cart_list > :nth-child(4)').should('contain', 'Sauce Labs Bike Light')
-        cy.get('.cart_list > :nth-child(5)').should('contain', 'Sauce Labs Bolt T-Shirt')
+        cy.verificaProdutos()
 
         // Checkout:
         cy.get('[data-test="checkout"]').click()
@@ -47,9 +42,7 @@ describe('Teste E2E - Realizando a compra de produtos com sucesso', () => {
         cy.get('[data-test="continue"]').click()
 
         // Verificando produtos no checkout:        
-        cy.get('.cart_list > :nth-child(3)').should('contain', 'Sauce Labs Onesie')
-        cy.get('.cart_list > :nth-child(4)').should('contain', 'Sauce Labs Bike Light')
-        cy.get('.cart_list > :nth-child(5)').should('contain', 'Sauce Labs Bolt T-Shirt')
+        cy.verificaProdutos()
 
         // Checagem no valor total:
         cy.get('.summary_total_label').should('have.text', 'Total: $36.69')
